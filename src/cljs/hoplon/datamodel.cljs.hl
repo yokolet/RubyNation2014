@@ -1,0 +1,7 @@
+(ns hoplon.datamodel)
+
+(defc your-name "everyone")
+
+(defc myjvlmodel 1)
+
+(defc= picture-url (str "/hoplon-learning/img/picture" myjvlmodel ".png"))

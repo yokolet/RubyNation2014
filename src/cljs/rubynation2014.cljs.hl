@@ -1,0 +1,401 @@
+(page "rubynation2014.html"
+  (:require [hoplon.reveal :refer [slideshow chapter slide notes highlight quicklist bullet]]
+            [tailrecursion.hoplon.reload :as r]
+            [hoplon.samples :as a]
+            [hoplon.util :as u]
+            [hoplon.spreadsheet :as s]
+            [hoplon.datamodel :as d]))
+
+(r/reload-all)
+
+(defn chapter-intro []
+  (chapter :title ""
+           (slide :title (h2 "It's Java, But Wait, It's Ruby")
+                  (br)
+                  (br)
+                  (bullet (h3 :class "yellow" "Yoko Harada"))
+                  (bullet (h3 :class "yellow" "@yokolet")))
+
+           (slide :title (h2 "Who Is Yoko?")
+                  (br)
+                  (ul
+                   (li :class "fragment" :data-fragment-index "1"
+                       (h3 :class "yellow" "Developer at Cognitect, Inc.")
+                       (h4 "Ruby/Java/JavaScript/Clojure/ClojureScript/Groovy"))
+                   (li :class "fragment" :data-fragment-index "2"
+                       (h3 :class "yellow" "JRuby Developer"))
+                   (li :class "fragment" :data-fragment-index "3"
+                       (h3 :class "yellow" "Nokogiri Gem Developer"))
+                   (li :class "fragment" :data-fragment-index "4"
+                       (h3 :class "yellow" "Diametric Gem Developer"))
+                   (li :class "fragment" :data-fragment-index "5"
+                       (h3 :class "yellow" "@yokolet")))
+)
+
+           (slide :title (h2 "Once Upon a Time")
+                  (br)
+                  (bullet :class "fragment" :data-fragment-index "1"
+                          (h3 :class "yellow" "There were days Java EMPIRE thrived"))
+                  (br)
+                  (bullet :class "fragment" :data-fragment-index "1"
+                          (img :src "/img/dark-age.png")) )
+
+           (slide :title (h2 "Time Goes By, Then")
+                  (br)
+                  (bullet :class "fragment" :data-fragment-index "1"
+                          (h3 :class "yellow" "There were days Java EMPIRE shrinked"))
+                  (bullet :class "fragment" :data-fragment-index "1"
+                          (img :src "/img/rip.png")) )
+
+           (slide :title (h2 "On the Other Side of the World")
+                  (br)
+                  (bullet :class "fragment" :data-fragment-index "1"
+                          (h3 :class "yellow" "Days of peaceful RoR coding have continued"))
+                  (bullet :class "fragment" :data-fragment-index "1"
+                          (img :src "/img/peaceful.png")))
+
+           (slide :title (h2 "Time Goes By, Then")
+                  (br)
+                  (bullet :class "fragment" :data-fragment-index "1"
+                          (h3 :class "yellow" "New technologies have grown quickly!"))
+                  (bullet :class "fragment" :data-fragment-index "1"
+                          (img :src "/img/bigdata.png"))
+                  )
+           (slide :title (h2 "Is It The Time Or Not?")
+                  (br)
+                  (bullet :class "fragment" :data-fragment-index "1"
+                          (h3 :class "yellow" "Java EMPIRE is striking back...?"))
+                  (bullet :class "fragment" :data-fragment-index "1"
+                          (img :src "/img/striking_back.png"))
+                  )
+           (slide :title (h2 "The Answer Is ...")
+                  (br)
+                  (bullet :class "fragment" :data-fragment-index "1"
+                          (h3 :class "yellow" "No need to switch over to other languages"))
+                  (bullet :class "fragment" :data-fragment-index "1"
+                          (img :src "/img/nooo.png"))
+                  )
+           (slide :title (h2 "It is 2014, So ...")
+                  (br)
+                  (bullet :class "fragment" :data-fragment-index "1"
+                          (h3 :class "yellow" "Just Let Java Go"))
+                  (bullet :class "fragment" :data-fragment-index "1"
+                          (img :src "/img/let_java_go.png")) )
+           (slide :title (h2 "Do You Remember That?")
+                  (bullet :class "fragment" :data-fragment-index "1"
+                          (h3 :class "yellow" "We have JRuby "))
+                  (bullet :class "fragment" :data-fragment-index "2"
+                          (h3 :class "yellow" "JRuby is an open door"))
+                  (bullet :class "fragment" :data-fragment-index "2"
+                          (img :src "/img/jruby_open_door.png")) )
+           ))
+
+(defn chapter-hoplon []
+  (chapter :title  "How?"
+           (slide :title (h2 "Example 1: mapleroad gem")
+                  (bullet (h3 :class "yellow" "Provides wrappers for Hadoop's map/reduce jobs"))
+                  (bullet (h3 (a :target "_blank" :href "https://github.com/yokolet/mapleroad" "https://github.com/yokolet/mapleroad"))))
+           (slide :title (h2 "Example 1: mapleroad gem")
+                  (br)
+                  (bullet (h3 :class "yellow" "How it works"))
+                  (bullet (img :src "/img/mapleroad.png")) )
+           (slide :title (h2 "Example 1: mapleroad gem")
+                  (bullet (h3 :class "yellow" "Mapper Wrapper by Java"))
+                  (h4 (highlight :class "java"
+                                 ;;{{
+public void map(LongWritable key, Text value,
+                OutputCollector<Text, IntWritable> outputCollector, Reporter arg3)
+    throws IOException {
+    Ruby runtime = Ruby.getGlobalRuntime();
+    RubyRuntimeAdapter adapter = JavaEmbedUtils.newRuntimeAdapter();
+    IRubyObject receiver = adapter.eval(runtime, mapper_code);
+
+    IRubyObject rubyKey = JavaUtil.convertJavaToRuby(runtime, key);
+    IRubyObject rubyValue = JavaUtil.convertJavaToRuby(runtime, value);
+    MapleRoadCollectorTextInt collector =
+        new MapleRoadCollectorTextInt(keyText, valueInt, outputCollector);
+    IRubyObject rubyCollector = JavaUtil.convertJavaToRuby(runtime, collector);
+                        
+    Helpers.invoke(runtime.getCurrentContext(), receiver,
+                   "map", rubyKey, rubyValue, rubyCollector);
+}
+                                 ;;}}
+                                 ))
+                  )
+           (slide :title (h2 "Example 1: mapleroad gem")
+                  (bullet (h3 :class "yellow" "Mapper by Ruby"))
+                  (h3 (highlight :class "ruby"
+                                 ;;{{
+                                 class WordCounterMapper
+                                   def map (key, value, collector)
+                                     value.to_s.split.each do |word|
+                                       collector.collect (word, 1)
+                                     end
+                                   end
+                                 end
+                                 WordCounterMapper.new
+                                 ;;}}
+                                 )))
+
+           (slide :title (h2 "Example 1: mapleroad gem")
+                  (bullet (h3 :class "yellow" "Reducer by Ruby"))
+                  (h3 (highlight :class "ruby"
+                                 ;;{{
+                                 class WordCounterReducer
+                                   def reduce(key, values, collector)
+                                     sum = values.inject(0) do |memo, v|
+                                       memo = memo + v.to_string.to_i
+                                     end
+                                     collector.collect(key, sum)
+                                   end
+                                 end
+                                 WordCounterReducer.new
+                                 ;;}}
+                                 )))
+           (slide :title (h2 "Example 1: mapleroad gem")
+                  (br)
+                  (bullet (h3 :class "yellow" "By the way, what is to_string?"))
+                  (h3 (highlight :class "ruby"
+                                 ;;{{
+                                 memo = memo + v.to_string.to_i
+                                 ;;}}
+                                 )))
+           )
+  )
+
+(defn chapter-angular []
+  (chapter :title "Java Extension for JRuby"
+           (slide :title "External Javascript"
+                  (bullet "inc.js extension files -> resources/public/main.js")
+                  (highlight
+                   ;;{{
+                   ./src
+                   ├── clj
+                   │   └── devserver.clj
+                   └── cljs
+                   ├── angular.inc.js
+                   ├── head.inc.js
+                   ├── hoplon
+                   │   ├── reveal.cljs.hl
+                   │   ├── samples.cljs.hl
+                   │   ├── spreadsheet.cljs.hl
+                   │   └── util.cljs.hl
+                   ├── hoplon_learning.cljs.hl
+                       └── reveal.inc.js
+                   ;;}}
+                   )
+                  (p "Nothing here {{'yet' + '!'}}")
+                  (highlight
+                   ;;{{
+                   (html :ng-app "hoplonApp"
+                         (p "Nothing here { {'yet' + '!'}}"))
+                   ;; intentionally puts a space between leading double
+                   ;; curly braces to show syntax
+                   ;;}}
+                   )
+                  (highlight
+                   ;;{{
+                   <html ng-app="hoplonApp" ng-class="ng-scope">
+                     <p class= "ng-binding">Nothing here yet!</p>
+                   </html>
+                   ;;}}
+                   )
+                  ) ;; slide
+           (slide :title "AngularJS controller"
+                  (bullet "in ClojureScript")
+                  (highlight
+                   ;;{{
+                   (ns hoplon.samples)
+                   (def hoplonApp
+                     (.module js/angular "hoplonApp" (array)))
+                   (defn namesListCtrl [$scope]
+                     (aset $scope "phones" (clj->js [{"name" "Nexus S"
+                                                      "snippet" "4 Fast just got faster with Nexus S."}
+                                                     {"name" "Motorola XOOM™ with Wi-Fi"
+                                                      "snippet" "The Next, Next Generation tablet."}
+                                                     {"name" "MOTOROLA XOOM™'"
+                                                      "snippet" "The Next, Next Generation tablet."}]))
+)
+                   (.controller hoplonApp "NamesListCtrl" namesListCtrl)
+                   ;;}}
+                   )
+                  (bullet "* phones are scope local values")
+                  ) ;; slide
+           (slide :title "AngularJS HTML"
+                  (highlight
+                   ;;{{
+                   (p :ng-controller "NamesListCtrl"
+                      (ul
+                       (li :ng-repeat "phone in phones" "{ {phone.name}}"
+                          (p "{ {phone.snippet}}"))))
+                   ;;}}
+                   )
+                  (p :ng-controller "NamesListCtrl"
+                     (ul
+                      (li :ng-repeat "phone in phones" "{{phone.name}}"
+                          (p "{{phone.snippet}}"))))
+                  ) ;; slide
+           (slide :title "Ajax by AngularJS"
+                  (bullet "Get request returns : "
+                          (a :target "_blank" :href "/phones.json" "phones.json"))
+                  (highlight
+                   ;;{{
+                   (defn namesListCtrlAjax [$scope $http]
+                     (-> $http
+                         (.get "/hoplon-learning/phones.json")
+                         (.success (fn [data]
+                                     (aset $scope "phonedata" data))))
+                     )
+                   (.controller hoplonApp "PhoneListCtrlAjax" namesListCtrlAjax)
+                   ;;}}
+                   )
+                  ) ;; slide
+           (slide :title "Ajax by AngularJS"
+                  (highlight
+                   ;;{{
+                   (tr :ng-repeat "phone in phonedata"
+                           (td "{ {phone.id}}") (td "{ {phone.name}}") (td "{ {phone.year}}"))
+                   ;;}}
+                   )
+                  (div :ng-controller "NamesListCtrlAjax"
+                     (table :class "reveal"
+                      (thead
+                       (tr
+                        (th "ID") (th "name") (th "year")))
+                      (tbody
+                       (tr :ng-repeat "phone in phonedata"
+                           (td "{{phone.id}}") (td "{{phone.name}}") (td "{{phone.year}}"))))
+                     )
+                  ) ;; slide
+           ) ;; chapter
+  ) ;; defn
+
+(defn chapter-comparison []
+  (chapter :title "Comparison: AngularJS Data Binding and Javlin"
+           (slide :title "AngularJS Data Binding"
+                  (highlight
+                   ;;{{
+                   (input :type "text"
+                          :ng-model "yourname" :placeholder "Enter a name here" "your-name")
+                   (bullet "Hello { {yourname}}")
+                   ;;}}
+                   )
+                  (highlight
+                   ;;{{
+                   <div class= "ng-binding">Hello </div>
+                   ;;}}
+                   )
+                  (input :type "text" :ng-model "yourname" :placeholder "Enter a name here" "your-name")
+                  (bullet "Hello {{yourname}}")
+                  ) ;; slide
+           (slide :title "Javlin"
+                  (highlight
+                   ;;{{
+                   (defc your-name "everyone")
+                   (input :id "input-name" :type "text"
+                          :placeholder "Enter a name here"
+                          :on-input #(reset! d/your-name (val-id "input-name")))
+                   (bullet (text "Hello ~{d/your-name} "))
+                   ;;}}
+                   )
+                  (highlight
+                   ;;{{
+                   <div>Hello everyone</div>
+                   ;;}}
+                   )
+                  (input :id "input-name" :type "text"
+                         :placeholder "Enter a name here"
+                         :on-input #(reset! d/your-name (val-id "input-name")))
+                  (bullet (text "Hello ~{d/your-name} "))
+                  ) ;; slide
+           (slide :title "AngularJS Data Binding"
+                  #_(div :ng-model "myngmodel0"
+                       (div "myngmodel0 {{myngmodel0}}")
+                       (button :ng-click "myngmodel0=1" :class "btn btn-large" "1")
+                       (button :ng-click "myngmodel0=2" :class "btn btn-large" "2")
+                       (button :ng-click "myngmodel0=3" :class "btn btn-large" "3")
+                       )
+                  (div :ng-controller "ButtonsCtrl" :ng-model "myngmodel", :ng-init "myngmodel=1"
+                       (button :ng-repeat "index in ['1', '2', '3', '4']" :ng-click "update(index)" :class "btn btn-large" "{{index}}")
+                       (div (img :src "/hoplon-learning/img/picture{{myngmodel}}.png")))
+                  )
+           (slide :title "AngularJS Data Binding Code"
+                  (highlight
+                   ;;{{
+                   (defn buttonsCtrl [$scope]
+                     (aset $scope "update" (fn [index] (aset $scope "myngmodel" index))))
+                   (.controller hoplonApp "ButtonsCtrl" buttonsCtrl)
+                   ;;}}
+                   )
+                  (highlight
+                   ;;{{
+                   (div :ng-controller "ButtonsCtrl" :ng-model "myngmodel", :ng-init "myngmodel=1"
+                        (button :ng-repeat "index in ['1', '2', '3', '4']" :ng-click "update(index)" :class "btn btn-large" "{ {index}}")
+                       (div (img :src "/hoplon-learning/img/picture{ {myngmodel}}.png")))
+                   ;;}}
+                   )
+                  )
+           (slide :title "Javlin"
+                  (div
+                   (loop-tpl :bindings [x [1 2 3 4]]
+                             (button :on-click #(reset! d/myjvlmodel @x) :class "btn btn-large" (str @x)))
+                   (div (img :src d/picture-url)))
+                  )
+           (slide :title "Javlin Code"
+                  (highlight
+                   ;;{{
+                   (ns hoplon.datamodel)
+                   (defc myjvlmodel 1)
+                   (defc= picture-url (str "/hoplon-learning/img/picture" myjvlmodel ".png"))
+                   ;;}}
+                   )
+                  (highlight
+                   ;;{{
+                   (div
+                    (loop-tpl :bindings [x [1 2 3 4]]
+                              (button :on-click #(reset! d/myjvlmodel @x) :class "btn btn-large" (str @x)))
+                    (div (img :src d/picture-url)))
+                   ;;}}
+                   )
+                  )
+           ) ;; chapter
+  ) ;; defn
+
+(defn chapter-conclusion []
+  (chapter :title "Conclusion"
+           (slide :title "Hoplon as a Client Side Framework"
+                  (bullet :class "fragment" :data-fragment-index "1" "Boot - made it easy to develop")
+                  (bullet :class "fragment" :data-fragment-index "2" "Javlin - made it easy to understand")
+                  (bullet :class "fragment" :data-fragment-index "3" "HLisp - made it easy to write and extensible")
+                  ) ;; slide
+           (slide :title "AngularJS on Hoplon"
+                  (bullet :class "fragment" :data-fragment-index "1" "It works")
+                  (bullet :class "fragment" :data-fragment-index "2" "One of the choices")
+                  (bullet :class "fragment" :data-fragment-index "3" "AngularJS directives are handy")
+                  )
+           (slide :title "AngularJS vs Hoplon"
+                  (bullet :class "fragment" :data-fragment-index "1" "Both can do the same thing")
+                  (bullet :class "fragment" :data-fragment-index "2" "AngularJS like Hoplon directives?")
+
+                  (br)
+                  (bullet :class "fragment" :data-fragment-index "3" "AngularJS's documentation is awesome!")
+                  )
+           (slide :title "Thanks Alan and Micha"
+                  (bullet "I enjoyed Hoplon coding")
+                  (bullet "I will try more"))
+           (slide :title "Thank you all!"
+                  (div "Web: " (u/url "http://yokolet.github.io/hoplon-learning/"))
+                  (div "Code: " (u/url "http://github.com/yokolet/hoplon-learning")))
+           )
+  )
+
+(html :ng-app "hoplonApp"
+        (head
+         (title "RubyNation 2014"))
+        (body
+         (slideshow :theme "night"
+                    (chapter-intro)
+                    (chapter-hoplon)
+                    (chapter-angular)
+                    (chapter-comparison)
+                    (chapter-conclusion))))

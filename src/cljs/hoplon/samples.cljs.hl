@@ -1,0 +1,30 @@
+(ns hoplon.samples)
+
+(def hoplonApp
+  (.module js/angular "hoplonApp" (array)))
+
+(defn namesListCtrl [$scope]
+  (aset $scope "phones" (clj->js [{"name" "Nexus S"
+                                   "snippet" "4 Fast just got faster with Nexus S."}
+                                  {"name" "Motorola XOOM™ with Wi-Fi"
+                                   "snippet" "The Next, Next Generation tablet."}
+                                  {"name" "MOTOROLA XOOM™'"
+                                   "snippet" "The Next, Next Generation tablet."}]))
+  #_(def $scope.phones (array "Nexus S" "Motorola XOOM™ with Wi-Fi" "MOTOROLA XOOM™"))
+)
+
+(.controller hoplonApp "NamesListCtrl" namesListCtrl)
+
+(defn namesListCtrlAjax [$scope $http]
+  (-> $http
+      (.get "/hoplon-learning/phones.json")
+      (.success (fn [data]
+                  (aset $scope "phonedata" data))))
+  )
+
+(.controller hoplonApp "NamesListCtrlAjax" namesListCtrlAjax)
+
+(defn buttonsCtrl [$scope]
+  (aset $scope "update" (fn [index] (aset $scope "myngmodel" index))))
+
+(.controller hoplonApp "ButtonsCtrl" buttonsCtrl)
