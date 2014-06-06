@@ -21,6 +21,7 @@
                   (ul
                    (li :class "fragment" :data-fragment-index "1"
                        (h3 :class "yellow" "Developer at Cognitect, Inc.")
+                       (bullet (h3 (a :target "_blank" :href "http://cognitect.com/" "http://cognitect.com/")))                       
                        (h4 "Ruby/Java/JavaScript/Clojure/ClojureScript/Groovy"))
                    (li :class "fragment" :data-fragment-index "2"
                        (h3 :class "yellow" "JRuby Developer"))
@@ -91,7 +92,7 @@
            ))
 
 (defn chapter-mapleroad []
-  (chapter :title  "How JRuby Can Do That?"
+  (chapter :title  "How JRuby Works?"
            (slide :title (h2 "Example 1: mapleroad gem")
                   (bullet (h3 :class "yellow" "Provides wrappers for Hadoop's map/reduce jobs"))
                   (bullet (h3 (a :target "_blank" :href "https://github.com/yokolet/mapleroad" "https://github.com/yokolet/mapleroad"))))
@@ -278,6 +279,21 @@ public void map(LongWritable key, Text value,
                   )
 
            (slide :title (h2 "Example 3: Diametric Gem")
+                  (bullet (h3 :class "yellow" "Datomic's query result"))
+                  (bullet (img :src "/img/datomic-query.png")) 
+                  )
+
+           (slide :title (h2 "Example 3: Diametric Gem")
+                  (bullet (h3 :class "yellow" "Diametric wraps those"))
+                  (bullet (img :src "/img/diametric-type-wrapper.png")) 
+                  )
+
+           (slide :title (h2 "Example 3: Diametric Gem")
+                  (bullet (h3 :class "yellow" "Diametric hits those like this."))
+                  (bullet (img :src "/img/wrapping_code.png")) 
+                  )
+
+           (slide :title (h2 "Example 3: Diametric Gem")
                   (br)
                   (br)
                   (bullet (h3 :class "yellow" "It's DEMO time!"))
@@ -312,9 +328,16 @@ public void map(LongWritable key, Text value,
                           (h3 :class "yellow" "Let Java Go"))
                   (bullet :class "fragment" :data-fragment-index "2"
                           (h3 :class "yellow" "JRuby is an Open Door"))
-                  (bullet :class "fragment" :data-fragment-index "3"
-                          (h3 :class "yellow" "Go ahead and embrace JRuby"))
                   ) ;; slide
+
+           (slide :title (h2 "It's Java, But Wait, It's Ruby")
+                  (br)
+                  (bullet :class "fragment" :data-fragment-index "1"
+                          (h3 :class "yellow" "Write Ruby methods in Java"))
+                  (bullet :class "fragment" :data-fragment-index "2"
+                          (h3 :class "yellow" "Java technologies are for Ruby"))
+                  ) ;; slide
+
            (slide :title (h2 "Thank You!"))
            
            ) ;; chapter
