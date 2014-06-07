@@ -51,7 +51,7 @@
            (slide :title (h2 "On the Other Side of the World")
                   (br)
                   (bullet :class "fragment" :data-fragment-index "1"
-                          (h3 :class "yellow" "Days of peaceful RoR coding have continued"))
+                          (h3 :class "yellow" "Days of Ruby, Ruby on Rails keep going"))
                   (bullet :class "fragment" :data-fragment-index "1"
                           (img :src "/img/peaceful.png")))
 
@@ -62,17 +62,17 @@
                   (bullet :class "fragment" :data-fragment-index "1"
                           (img :src "/img/bigdata.png"))
                   )
-           (slide :title (h2 "Is It The Time Or Not?")
+           (slide :title (h2 "Java EMPIRE is striking back...?")
                   (br)
                   (bullet :class "fragment" :data-fragment-index "1"
-                          (h3 :class "yellow" "Java EMPIRE is striking back...?"))
+                          (h3 :class "yellow" "Is It The Time Or Not?"))
                   (bullet :class "fragment" :data-fragment-index "1"
                           (img :src "/img/striking_back.png"))
                   )
            (slide :title (h2 "The Answer Is ...")
                   (br)
                   (bullet :class "fragment" :data-fragment-index "1"
-                          (h3 :class "yellow" "No need to switch over to other languages"))
+                          (h3 :class "yellow" "No need to switch to other languages"))
                   (bullet :class "fragment" :data-fragment-index "1"
                           (img :src "/img/nooo.png"))
                   )
