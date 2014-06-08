@@ -84,9 +84,9 @@
        (link :rel "stylesheet"
              :href "reveal.js/plugin/highlight/github.min.css")
        (link :rel "stylesheet"
-             :href "button.css")
+             :href "/RubyNation2014/css/button.css")
        (link :rel "stylesheet"
-             :href "custom.css")
+             :href "/RubyNation2014/css/custom.css")
        (div :class "slides" children)))
 
 (def bullet div)
