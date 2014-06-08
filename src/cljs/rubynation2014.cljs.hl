@@ -22,7 +22,7 @@
                    (li :class "fragment" :data-fragment-index "1"
                        (h3 :class "yellow" "Developer at Cognitect, Inc.")
                        (bullet (h3 (a :target "_blank" :href "http://cognitect.com/" "http://cognitect.com/")))                       
-                       (h4 "Ruby/Java/JavaScript/Clojure/ClojureScript/Groovy"))
+                       (h4 "Ruby, Rails/Java/JavaScript/Clojure/ClojureScript/Groovy"))
                    (li :class "fragment" :data-fragment-index "2"
                        (h3 :class "yellow" "JRuby Developer"))
                    (li :class "fragment" :data-fragment-index "3"
@@ -62,7 +62,7 @@
                   (bullet :class "fragment" :data-fragment-index "1"
                           (img :src "/img/bigdata.png"))
                   )
-           (slide :title (h2 "Java EMPIRE is striking back...?")
+           (slide :title (h2 "Java EMPIRE strikes back...?")
                   (br)
                   (bullet :class "fragment" :data-fragment-index "1"
                           (h3 :class "yellow" "Is It The Time Or Not?"))
