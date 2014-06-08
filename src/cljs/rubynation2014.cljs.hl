@@ -39,56 +39,56 @@
                           (h3 :class "yellow" "There were days Java EMPIRE thrived"))
                   (br)
                   (bullet :class "fragment" :data-fragment-index "1"
-                          (img :src "RubyNation2014/img/dark-age.png")) )
+                          (img :src "/RubyNation2014/img/dark-age.png")) )
 
            (slide :title (h2 "Time Goes By, Then")
                   (br)
                   (bullet :class "fragment" :data-fragment-index "1"
                           (h3 :class "yellow" "There were days Java EMPIRE shrinked"))
                   (bullet :class "fragment" :data-fragment-index "1"
-                          (img :src "RubyNation2014/img/rip.png")) )
+                          (img :src "/RubyNation2014/img/rip.png")) )
 
            (slide :title (h2 "On the Other Side of the World")
                   (br)
                   (bullet :class "fragment" :data-fragment-index "1"
                           (h3 :class "yellow" "Days of Ruby, Ruby on Rails keep going"))
                   (bullet :class "fragment" :data-fragment-index "1"
-                          (img :src "RubyNation2014/img/peaceful.png")))
+                          (img :src "/RubyNation2014/img/peaceful.png")))
 
            (slide :title (h2 "Time Goes By, Then")
                   (br)
                   (bullet :class "fragment" :data-fragment-index "1"
                           (h3 :class "yellow" "New technologies have grown quickly!"))
                   (bullet :class "fragment" :data-fragment-index "1"
-                          (img :src "RubyNation2014/img/bigdata.png"))
+                          (img :src "/RubyNation2014/img/bigdata.png"))
                   )
            (slide :title (h2 "Java EMPIRE strikes back...?")
                   (br)
                   (bullet :class "fragment" :data-fragment-index "1"
                           (h3 :class "yellow" "Is It The Time Or Not?"))
                   (bullet :class "fragment" :data-fragment-index "1"
-                          (img :src "RubyNation2014/img/striking_back.png"))
+                          (img :src "/RubyNation2014/img/striking_back.png"))
                   )
            (slide :title (h2 "The Answer Is ...")
                   (br)
                   (bullet :class "fragment" :data-fragment-index "1"
                           (h3 :class "yellow" "No need to switch to other languages"))
                   (bullet :class "fragment" :data-fragment-index "1"
-                          (img :src "RubyNation2014/img/nooo.png"))
+                          (img :src "/RubyNation2014/img/nooo.png"))
                   )
            (slide :title (h2 "It is 2014, So ...")
                   (br)
                   (bullet :class "fragment" :data-fragment-index "1"
                           (h3 :class "yellow" "Let Java Go"))
                   (bullet :class "fragment" :data-fragment-index "1"
-                          (img :src "RubyNation2014/img/let_java_go.png")) )
+                          (img :src "/RubyNation2014/img/let_java_go.png")) )
            (slide :title (h2 "Remember That?")
                   (bullet :class "fragment" :data-fragment-index "1"
                           (h3 :class "yellow" "We have JRuby "))
                   (bullet :class "fragment" :data-fragment-index "2"
                           (h3 :class "yellow" "JRuby is an open door"))
                   (bullet :class "fragment" :data-fragment-index "2"
-                          (img :src "RubyNation2014/img/jruby_open_door.png")) )
+                          (img :src "/RubyNation2014/img/jruby_open_door.png")) )
            ))
 
 (defn chapter-mapleroad []
@@ -103,7 +103,7 @@
            (slide :title (h2 "Example 1: mapleroad gem")
                   (br)
                   (bullet (h3 :class "yellow" "How it works"))
-                  (bullet (img :src "RubyNation2014/img/mapleroad.png")) )
+                  (bullet (img :src "/RubyNation2014/img/mapleroad.png")) )
 
            
            (slide :title (h2 "Example 1: mapleroad gem")
@@ -214,12 +214,12 @@ public void map(LongWritable key, Text value,
 
            (slide :title (h2 "Example 2: Nokogiri Gem")
                   (bullet (h3 :class "yellow" "How does Nokogiri extend natvie library?"))
-                  (bullet (img :src "RubyNation2014/img/nokogiri.png"))
+                  (bullet (img :src "/RubyNation2014/img/nokogiri.png"))
                   ) ;; slide
 
            (slide :title (h2 "Example 2: Nokogiri Gem")
                   (bullet (h3 :class "yellow" "From DOM tree to Nokogiri object"))
-                  (bullet (img :src "RubyNation2014/img/nokogiri-wrapper.png"))
+                  (bullet (img :src "/RubyNation2014/img/nokogiri-wrapper.png"))
                   ) ;; slide
 
            (slide :title (h2 "Example 2: Nokogiri Gem")
@@ -247,42 +247,42 @@ public void map(LongWritable key, Text value,
 
            (slide :title (h2 "Example 3: Diametric Gem")
                   (bullet (h3 :class "yellow" "Diametric converts class definition to ..."))
-                  (bullet (img :src "RubyNation2014/img/person_simple_model.png"))
+                  (bullet (img :src "/RubyNation2014/img/person_simple_model.png"))
                   )  ;; slide
 
            (slide :title (h2 "Example 3: Diametric Gem")
                   (bullet (h3 :class "yellow" "Datomic schema in EDN"))
-                  (bullet (img :src "RubyNation2014/img/person_simple_schema.png"))
+                  (bullet (img :src "/RubyNation2014/img/person_simple_schema.png"))
                   ) ;; slide
 
            (slide :title (h2 "Example 3: Diametric Gem")
                   (bullet (h3 :class "yellow" "Diametric converts method calls to ..."))
-                  (bullet (img :src "RubyNation2014/img/person_simple_instance.png"))
+                  (bullet (img :src "/RubyNation2014/img/person_simple_instance.png"))
                   )  ;; slide
 
            (slide :title (h2 "Example 3: Diametric Gem")
                   (bullet (h3 :class "yellow" "Datomic transaction data in EDN"))
-                  (bullet (img :src "RubyNation2014/img/person_simple_txdata.png"))
+                  (bullet (img :src "/RubyNation2014/img/person_simple_txdata.png"))
                   ) ;; slide
 
            (slide :title (h2 "Example 3: Diametric Gem")
                   (bullet (h3 :class "yellow" "Diametric converts method calls to ..."))
-                  (bullet (img :src "RubyNation2014/img/diametric_query_all.png"))
+                  (bullet (img :src "/RubyNation2014/img/diametric_query_all.png"))
                   ) ;; slide
 
            (slide :title (h2 "Example 3: Diametric Gem")
                   (bullet (h3 :class "yellow" "Datomic query in Datalog"))
-                  (bullet (img :src "RubyNation2014/img/datalog_query.png"))
+                  (bullet (img :src "/RubyNation2014/img/datalog_query.png"))
                   ) ;; slide
 
            (slide :title (h2 "Example 3: Diametric Gem")
                   (bullet (h3 :class "yellow" "Architecture for Peer API"))
-                  (bullet (img :src "RubyNation2014/img/diametric_peer_api_small.png"))
+                  (bullet (img :src "/RubyNation2014/img/diametric_peer_api_small.png"))
                   )
 
            (slide :title (h2 "Example 3: Diametric Gem")
                   (bullet (h3 :class "yellow" "Datomic's query results"))
-                  (bullet (img :src "RubyNation2014/img/datomic-query.png"))
+                  (bullet (img :src "/RubyNation2014/img/datomic-query.png"))
                   )
 
            (slide :title (h2 "Example 3: Diametric Gem")
@@ -299,12 +299,12 @@ public void map(LongWritable key, Text value,
 
            (slide :title (h2 "Example 3: Diametric Gem")
                   (bullet (h3 :class "yellow" "Diametric wraps HashSet and PersistentVector"))
-                  (bullet (img :src "RubyNation2014/img/diametric-type-wrapper.png"))
+                  (bullet (img :src "/RubyNation2014/img/diametric-type-wrapper.png"))
                   )
 
            (slide :title (h2 "Example 3: Diametric Gem")
                   (bullet (h3 :class "yellow" "It's Java, but it's Ruby method"))
-                  (bullet (img :src "RubyNation2014/img/wrapping_code.png"))
+                  (bullet (img :src "/RubyNation2014/img/wrapping_code.png"))
                   )
 
            (slide :title (h2 "Example 3: Diametric Gem")
